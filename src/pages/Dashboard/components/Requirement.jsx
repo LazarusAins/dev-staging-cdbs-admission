@@ -25,9 +25,9 @@ function Requirement({
   const { admissions } = useContext(AdmissionsContext);
 
   const hiddenFileInput = useRef(null);
-
   let uploadedFiles = [];
   let type;
+  let docStatus;
   if (mainTitle == "Birth Certificate (PSA Copy)") {
     type = "birthCert";
     uploadedFiles = [
@@ -84,6 +84,7 @@ function Requirement({
         "db_required_documents_table"
       ].filter((el) => el.requirements_type === 14),
     ];
+    console.log(uploadedFiles)
   } else if (mainTitle == "Alien Certificate of Registration") {
     type = "alienCert";
     uploadedFiles = [
@@ -264,8 +265,11 @@ function Requirement({
                 </span>
               </div>
             ))}
+            
 
-            {mainTitle != "Recommendation Letter"
+
+
+            {/*mainTitle != "Recommendation Letter"
               ? uploadedFiles.map((el, i) => (
                   <div className="upload-view-btn-container" key={i}>
                     <a
@@ -310,7 +314,57 @@ function Requirement({
                     </button>
                   </div>
                 ))
-              : null}
+              : null*/}
+
+              {mainTitle !== "Recommendation Letter"
+                ? uploadedFiles.map((el, i) => (
+                    <div className="upload-view-btn-container" key={i}>
+                      <a
+                        id="view-upload"
+                        href={
+                          Array.isArray(el.document_url)
+                            ? el.document_url[0]
+                            : el.document_url.replace(/[\[\]"']/g, "")
+                        }
+                        key={i}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span className="btn-view">
+                          <img src={showEye} /> Uploaded File
+                        </span>
+                      </a>
+                      {(el.document_status !== "accepted") && (  // Check if file is not approved or hasn't been uploaded yet
+                        <button
+                          className="close-btn"
+                          onClick={async () => {
+                            var result = await Swal.fire({
+                              title: "Delete this uploaded file?",
+                              icon: "warning",
+                              showCancelButton: true,
+                              confirmButtonText: "Yes",
+                              cancelButtonColor: "No",
+                            });
+                            if (result.isConfirmed) {
+                              await handleDeleteUploadedFiles(
+                                el.requirements_type,
+                                el.admission_id,
+                                el.required_doc_id
+                              );
+
+                              fetchAdmissions();
+                            } else {
+                              return;
+                            }
+                          }} // Function to remove file
+                        >
+                          &times;
+                        </button>
+                      )}
+                    </div>
+                  ))
+                : null}
+
           </div>
 
           <div className="align-buttons-self">
@@ -318,7 +372,7 @@ function Requirement({
               <a href={parentQuestionnaire} download="parent-questionnaire">
                 <button
                   className="btn-blue btn btn-add"
-
+                  style={{ width: "230px" }}
                   // onClick={addApplicant}
                   // onClick={() => setPage("personal-form")}
                 >
@@ -330,11 +384,11 @@ function Requirement({
               <a href={recommendTeacher} download="recommendation-teacher">
                 <button
                   className="btn-blue btn btn-add"
-
+                  style={{ width: "230px" }}
                   // onClick={addApplicant}
                   // onClick={() => setPage("personal-form")}
                 >
-                  Teacher Form
+                  Class Adviser or Subject Teacher
                 </button>
               </a>
             ) : null}
@@ -345,7 +399,7 @@ function Requirement({
               >
                 <button
                   className="btn-blue btn btn-add reco-pad-left"
-
+                  style={{ width: "230px" }}
                   // onClick={addApplicant}
                   // onClick={() => setPage("personal-form")}
                 >
@@ -369,11 +423,11 @@ function Requirement({
         </div>
       </div>
 
-      {mainTitle != "Recommendation Letter" ? (
+      {/*mainTitle != "Recommendation Letter" && uploadedFiles.length ==0 ? (
         <div className="attachment-icon">
           <input
             ref={hiddenFileInput}
-            className="attach"
+            className="attach" style={{ marginTop: "70px", marginBottom: "70px"  }}
             type="file"
             accept=".png, .jpeg, .jpg, .pdf"
             multiple
@@ -391,7 +445,37 @@ function Requirement({
             onClick={handleClick}
           />
         </div>
-      ) : null}
+      ) : null*/
+      }
+
+      {mainTitle !== "Recommendation Letter" && (
+        (uploadedFiles.length === 0 || uploadedFiles.some((file) => file.document_status === "rejected")) && (
+          <div className="attachment-icon">
+            <input
+              ref={hiddenFileInput}
+              className="attach"
+              style={{ marginTop: "70px", marginBottom: "70px" }}
+              type="file"
+              accept=".png, .jpeg, .jpg, .pdf"
+              multiple
+              onChange={(e) => {
+                const files = Array.from(e.target.files);
+                if (handleFileChange(type, files)) {
+                  setFileNames(files.map((file) => file.name) || null);
+                }
+              }}
+            />
+            <img
+              className="attachment-icon-button"
+              src={attachment}
+              onClick={handleClick}
+            />
+          </div>
+        )
+      )}
+
+
+      
     </div>
   );
 }
