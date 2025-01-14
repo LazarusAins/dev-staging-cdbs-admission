@@ -34,7 +34,7 @@ function Registration({ typeRegister }) {
 
   const handleVerification = async () => {
     const response = await fetch(
-      "https://donboscoapi.vercel.app/api/admission/send_verification_code",
+      "https://dbs-api-live.vercel.app/api/admission/send_verification_code",
       {
         method: "POST",
         headers: {
@@ -58,7 +58,7 @@ function Registration({ typeRegister }) {
     setIsLoading(() => true);
     try {
       const response = await fetch(
-        "https://donboscoapi.vercel.app/api/admission/registration",
+        "https://dbs-api-live.vercel.app/api/admission/registration",
         {
           method: "POST",
           headers: {

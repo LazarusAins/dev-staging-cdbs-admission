@@ -13,7 +13,7 @@ function ForgetPassword() {
     setIsLoading(true);
     try {
       const response = await fetch(
-        "https://donboscoapi.vercel.app/api/admission/forgot-password",
+        "https://dbs-api-live.vercel.app/api/admission/forgot-password",
         {
           method: "POST",
           headers: {

@@ -25,7 +25,7 @@ function NewPassword() {
   const handleResetPassword = async (token) => {
     setIsLoading(true);
     const response = await fetch(
-      "https://donboscoapi.vercel.app/api/admission/reset-password",
+      "https://dbs-api-live.vercel.app/api/admission/reset-password",
       {
         method: "POST",
         headers: {

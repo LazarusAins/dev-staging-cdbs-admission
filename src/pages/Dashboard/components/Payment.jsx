@@ -16,7 +16,7 @@ function Payment({ setPage, dataIndex, applicationId, paymethodId }) {
 
   const handlePayment = async (paymentId) => {
     const response = await fetch(
-      "https://donboscoapi.vercel.app/api/admission/accept_agreement",
+      "https://dbs-api-live.vercel.app/api/admission/accept_agreement",
       {
         method: "POST",
         headers: {
@@ -36,7 +36,7 @@ function Payment({ setPage, dataIndex, applicationId, paymethodId }) {
 
   const handleRefNo = async () => {
     const response = await fetch(
-      "https://donboscoapi.vercel.app/api/admission/accept_agreement",
+      "https://dbs-api-live.vercel.app/api/admission/accept_agreement",
       {
         method: "POST",
         headers: {

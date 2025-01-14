@@ -395,7 +395,7 @@ function Requirement({
                         formData.append("admission_id",admissionId);
                         formData.append("requirements_type",5);
                         const fileUploadResponse = await fetch(
-                          "https://donboscoapi.vercel.app/api/admission/upload_requirements",
+                          "https://dbs-api-live.vercel.app/api/admission/upload_requirements",
                           {
                             method: "POST",
                             headers: {
@@ -443,7 +443,7 @@ function Requirement({
                         formData.append("admission_id",admissionId);
                         formData.append("requirements_type",5);
                         const fileUploadResponse = await fetch(
-                          "https://donboscoapi.vercel.app/api/admission/upload_requirements",
+                          "https://dbs-api-live.vercel.app/api/admission/upload_requirements",
                           {
                             method: "POST",
                             headers: {

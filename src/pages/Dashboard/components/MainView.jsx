@@ -133,7 +133,7 @@ function MainView({ setPage, page }) {
       setIsLoading(true);
     }
     const response = await fetch(
-      "https://donboscoapi.vercel.app/api/admission/get_user_admission",
+      "https://dbs-api-live.vercel.app/api/admission/get_user_admission",
       {
         method: "POST",
         headers: {
@@ -189,7 +189,7 @@ function MainView({ setPage, page }) {
   ) => {
     setIsLoading(true);
     const response = await fetch(
-      "https://donboscoapi.vercel.app/api/admission/remove_requirements",
+      "https://dbs-api-live.vercel.app/api/admission/remove_requirements",
       {
         method: "POST",
         headers: {
@@ -664,7 +664,7 @@ function MainView({ setPage, page }) {
 
         try {
           const fileUploadResponse = await fetch(
-            "https://donboscoapi.vercel.app/api/admission/upload_requirements",
+            "https://dbs-api-live.vercel.app/api/admission/upload_requirements",
             {
               method: "POST",
               headers: {
@@ -957,7 +957,7 @@ function MainView({ setPage, page }) {
   const handleSlotCheck = async () => {
     setSlotsLoading(true);
     const response = await fetch(
-      "https://donboscoapi.vercel.app/api/admission/check_slot",
+      "https://dbs-api-live.vercel.app/api/admission/check_slot",
       {
         method: "GET",
         headers: {
@@ -1123,7 +1123,7 @@ function MainView({ setPage, page }) {
       revisedLevelString = "Grade 7 - 12";
     }
     const response = await fetch(
-      "https://donboscoapi.vercel.app/api/admission/reserve_slot_exam",
+      "https://dbs-api-live.vercel.app/api/admission/reserve_slot_exam",
       {
         method: "POST",
         headers: {
@@ -1305,7 +1305,7 @@ function MainView({ setPage, page }) {
 
   const handlePersonalSubmission = async () => {
     const response = await fetch(
-      "https://donboscoapi.vercel.app/api/admission/create_admission",
+      "https://dbs-api-live.vercel.app/api/admission/create_admission",
       {
         method: "POST",
         headers: {
@@ -1348,7 +1348,7 @@ function MainView({ setPage, page }) {
 
   const handleAcademicSubmission = async () => {
     const response = await fetch(
-      "https://donboscoapi.vercel.app/api/admission/create_academic_background",
+      "https://dbs-api-live.vercel.app/api/admission/create_academic_background",
       {
         method: "POST",
         headers: {
@@ -1389,7 +1389,7 @@ function MainView({ setPage, page }) {
     console.log(`LIST: ${JSON.stringify(listA)}`);
 
     const response = await fetch(
-      "https://donboscoapi.vercel.app/api/admission/create_family_background_siblings",
+      "https://dbs-api-live.vercel.app/api/admission/create_family_background_siblings",
       {
         method: "POST",
         headers: {
@@ -1486,7 +1486,7 @@ function MainView({ setPage, page }) {
 
     console.log(`BACKID: ${backgroundSelected}`);
     const response = await fetch(
-      "https://donboscoapi.vercel.app/api/admission/create_family_background_parent",
+      "https://dbs-api-live.vercel.app/api/admission/create_family_background_parent",
       {
         method: "POST",
         headers: {
@@ -1537,7 +1537,7 @@ function MainView({ setPage, page }) {
   
       // Send POST request
       const fileUploadResponse = await fetch(
-        "https://donboscoapi.vercel.app/api/admission/create_special_concern",
+        "https://dbs-api-live.vercel.app/api/admission/create_special_concern",
         {
           method: "POST",
           headers: {
@@ -1574,7 +1574,7 @@ function MainView({ setPage, page }) {
   const handleSchedCancellation = async (easId, cancelReason) => {
     setIsLoading(true);
     const response = await fetch(
-      "https://donboscoapi.vercel.app/api/admission/cancel-schedule",
+      "https://dbs-api-live.vercel.app/api/admission/cancel-schedule",
       {
         method: "POST",
         headers: {
@@ -1604,7 +1604,7 @@ function MainView({ setPage, page }) {
   const handleSurveySubmission = async () => {
     setIsLoading(true);
     const response = await fetch(
-      "https://donboscoapi.vercel.app/api/admission/create_survey",
+      "https://dbs-api-live.vercel.app/api/admission/create_survey",
       {
         method: "POST",
         headers: {
@@ -1628,7 +1628,7 @@ function MainView({ setPage, page }) {
   const handleAgreementDeclaration = async () => {
     setIsLoading(true);
     const response = await fetch(
-      "https://donboscoapi.vercel.app/api/admission/accept_agreement",
+      "https://dbs-api-live.vercel.app/api/admission/accept_agreement",
       {
         method: "POST",
         headers: {
@@ -1677,7 +1677,7 @@ function MainView({ setPage, page }) {
     }
 
     const response = await fetch(
-      "https://donboscoapi.vercel.app/api/admission/check_exam_schedule",
+      "https://dbs-api-live.vercel.app/api/admission/check_exam_schedule",
       {
         method: "POST",
         headers: {
@@ -1718,7 +1718,7 @@ function MainView({ setPage, page }) {
     if (page == "main") {
     }
     const response = await fetch(
-      "https://donboscoapi.vercel.app/api/admission/get_user_admission",
+      "https://dbs-api-live.vercel.app/api/admission/get_user_admission",
       {
         method: "POST",
         headers: {
@@ -2032,7 +2032,7 @@ function MainView({ setPage, page }) {
 
     setIsLoading(true);
     const response = await fetch(
-      "https://donboscoapi.vercel.app/api/admission/register_admission",
+      "https://dbs-api-live.vercel.app/api/admission/register_admission",
       {
         method: "POST",
         headers: {

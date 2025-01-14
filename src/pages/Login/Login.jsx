@@ -31,7 +31,7 @@ function Login() {
     console.log("VERIFYING");
     try {
       const response = await fetch(
-        `https://donboscoapi.vercel.app/api/admission/verify_email?token=${token}`,
+        `https://dbs-api-live.vercel.app/api/admission/verify_email?token=${token}`,
         {
           method: "POST",
           headers: {
@@ -64,7 +64,7 @@ function Login() {
     setIsLoading(() => true);
     try {
       const response = await fetch(
-        "https://donboscoapi.vercel.app/api/admission/login_account",
+        "https://dbs-api-live.vercel.app/api/admission/login_account",
         {
           method: "POST",
           headers: {

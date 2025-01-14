@@ -23,7 +23,7 @@ function ApplicantCard({
   const handleDelete = async (admissionId) => {
     // setLoading(true);
     await fetch(
-      "https://donboscoapi.vercel.app/api/admission/delete_admission",
+      "https://dbs-api-live.vercel.app/api/admission/delete_admission",
       {
         method: "POST",
         headers: {
