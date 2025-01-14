@@ -383,10 +383,43 @@ function Requirement({
             {mainTitle === "Recommendation Letter" ? (
               <a href={recommendTeacher} download="recommendation-teacher">
                 <button
-                  className="btn-blue btn btn-add"
+                  className={`btn-blue btn btn-add ${isPendingOrAccepted ? "disabled" : ""}`}
                   style={{ width: "230px" }}
+                  onClick={async (e) => {
+                    if(isPendingOrAccepted){
+                      e.preventDefault();
+                    }else{
+                      try{
+                        const formData = new FormData();
+                        const admissionId = admissions["admissionsArr"][dataIndex]["admission_id"];
+                        formData.append("admission_id",admissionId);
+                        formData.append("requirements_type",5);
+                        const fileUploadResponse = await fetch(
+                          "https://donboscoapi.vercel.app/api/admission/upload_requirements",
+                          {
+                            method: "POST",
+                            headers: {
+                              "supabase-url": "https://ligqdgmwtziqytxyqpvv.supabase.co/",
+                              "supabase-key":
+                                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxpZ3FkZ213dHppcXl0eHlxcHZ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzY3NTE0MDQsImV4cCI6MjA1MjMyNzQwNH0.qHmECzoG1DfCs9zjirzwRzmp2V9OhBsKUr6tgnDCCq8",
+                            },
+                            body: formData,
+                          }
+                        );
+                
+                        // Log the response for debugging purposes
+                        console.log(await fileUploadResponse.json());
+                        fetchAdmissions();
+                      }catch (error) {
+                        console.error("Error uploading file:", error);
+                      }
+                    }
+              
+                  }
+                }
                   // onClick={addApplicant}
                   // onClick={() => setPage("personal-form")}
+                  
                 >
                   Class Adviser or Subject Teacher
                 </button>
@@ -398,8 +431,40 @@ function Requirement({
                 download="recommendation-school-head-counselor"
               >
                 <button
-                  className="btn-blue btn btn-add reco-pad-left"
+                  className={`btn-blue btn btn-add reco-pad-left ${isPendingOrAccepted ? "disabled" : ""}`}
                   style={{ width: "230px" }}
+                  onClick={async (e) => {
+                    if(isPendingOrAccepted){
+                      e.preventDefault();
+                    }else{
+                      try{
+                        const formData = new FormData();
+                        const admissionId = admissions["admissionsArr"][dataIndex]["admission_id"];
+                        formData.append("admission_id",admissionId);
+                        formData.append("requirements_type",5);
+                        const fileUploadResponse = await fetch(
+                          "https://donboscoapi.vercel.app/api/admission/upload_requirements",
+                          {
+                            method: "POST",
+                            headers: {
+                              "supabase-url": "https://ligqdgmwtziqytxyqpvv.supabase.co/",
+                              "supabase-key":
+                                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxpZ3FkZ213dHppcXl0eHlxcHZ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzY3NTE0MDQsImV4cCI6MjA1MjMyNzQwNH0.qHmECzoG1DfCs9zjirzwRzmp2V9OhBsKUr6tgnDCCq8",
+                            },
+                            body: formData,
+                          }
+                        );
+                
+                        // Log the response for debugging purposes
+                        console.log(await fileUploadResponse.json());
+                        fetchAdmissions();
+                      }catch (error) {
+                        console.error("Error uploading file:", error);
+                      }
+                    }
+              
+                  }
+                }
                   // onClick={addApplicant}
                   // onClick={() => setPage("personal-form")}
                 >

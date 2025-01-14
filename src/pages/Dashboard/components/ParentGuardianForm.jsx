@@ -297,168 +297,174 @@ function ParentGuardianForm({
           /> */}
             </div>
           </div>
-          <div className="form-row">
-            <div className="form-col">
-              <label htmlFor="name" className="label-form">
-                Employed at*
-              </label>
-              <input
-                value={parentGuardianObj["employedAt"]}
-                onChange={(e) => {
-                  handleChange(
-                    e,
-                    "family2",
-                    nameLabel == "Father's"
-                      ? "father"
-                      : nameLabel == "Mother's Maiden"
-                      ? "mother"
-                      : "guardian"
-                  );
-                }}
-                id="employedAt"
-                type="text"
-                className="form-textfield third-occ form-control"
-                placeholder="Employed at"
-                readOnly={!checked}
-                required={
-                  checked && parentGuardianObj["employmentStatus"] == "Employed"
-                }
-              />
-            </div>
+          {parentGuardianObj["employmentStatus"]!='Unemployed'
+            ?(
+              <>
+              <div className="form-row">
+                <div className="form-col">
+                  <label htmlFor="name" className="label-form">
+                    Employed at*
+                  </label>
+                  <input
+                    value={parentGuardianObj["employedAt"]}
+                    onChange={(e) => {
+                      handleChange(
+                        e,
+                        "family2",
+                        nameLabel == "Father's"
+                          ? "father"
+                          : nameLabel == "Mother's Maiden"
+                          ? "mother"
+                          : "guardian"
+                      );
+                    }}
+                    id="employedAt"
+                    type="text"
+                    className="form-textfield third-occ form-control"
+                    placeholder="Employed at"
+                    readOnly={!checked}
+                    required={
+                      checked && parentGuardianObj["employmentStatus"] == "Employed"
+                    }
+                  />
+                </div>
 
-            <div className="form-col">
-              <p className="label-form ">Office Address*</p>
-              <input
-                type="text"
-                value={parentGuardianObj["officeAddress"]}
-                onChange={(e) => {
-                  handleChange(
-                    e,
-                    "family2",
-                    nameLabel == "Father's"
-                      ? "father"
-                      : nameLabel == "Mother's Maiden"
-                      ? "mother"
-                      : "guardian"
-                  );
-                }}
-                id="officeAddress"
-                className="form-textfield third-occ form-control"
-                placeholder="Office Address"
-                readOnly={!checked}
-                required={
-                  checked && parentGuardianObj["employmentStatus"] == "Employed"
-                }
-              />
-            </div>
-          </div>
-          <div className="form-row">
-            <div className="form-col">
-              <label htmlFor="name" className="label-form">
-                Contact No*
-              </label>
-              <input
-                maxLength={11}
-                onInput={(e) => {
-                  const input = e.target.value.replace(/[^0-9]/g, ""); // Allow only digits
-                  e.target.value = input;
-                  if (input.length <= 11 || input.length >= 8) {
-                    handleChange(
-                      e,
-                      "family2",
-                      nameLabel == "Father's"
-                        ? "father"
-                        : nameLabel == "Mother's Maiden"
-                        ? "mother"
-                        : "guardian"
-                    );
-                  }
-                }}
-                onBlur={(e) => {
-                  const input = e.target.value.replace(/[^0-9]/g, "");
-                  if (input.length !== 11 && input.length !== 8) {
-                    alert("Contact number must be either 8 or 11 digits.");
-                    e.target.value = "";
-                    handleChange(
-                      e,
-                      "family2",
-                      nameLabel == "Father's"
-                        ? "father"
-                        : nameLabel == "Mother's Maiden"
-                        ? "mother"
-                        : "guardian"
-                    ); // Clear value in the state
-                  }
-                }}
-                value={parentGuardianObj["contactNo"]}
-                id="contactNo"
-                type="text"
-                className="form-textfield third-occ form-control"
-                placeholder="Contact number"
-                readOnly={!checked}
-                required={checked}
-              />
-            </div>
-            <div className="form-col">
-              <p className="label-form">Position*</p>
-              <input
-                value={parentGuardianObj["position"]}
-                onChange={(e) => {
-                  handleChange(
-                    e,
-                    "family2",
-                    nameLabel == "Father's"
-                      ? "father"
-                      : nameLabel == "Mother's Maiden"
-                      ? "mother"
-                      : "guardian"
-                  );
-                }}
-                id="position"
-                type="text"
-                className="form-textfield third-occ form-control"
-                placeholder="Position title"
-                readOnly={!checked}
-                required={
-                  checked && parentGuardianObj["employmentStatus"] == "Employed"
-                }
-              />
-            </div>
-            <div className="form-col">
-              <p className="label-form">Salary Scale*</p>
-              <select
-                value={parentGuardianObj["salary"]}
-                onChange={(e) => {
-                  handleChange(
-                    e,
-                    "family2",
-                    nameLabel == "Father's"
-                      ? "father"
-                      : nameLabel == "Mother's Maiden"
-                      ? "mother"
-                      : "guardian"
-                  );
-                }}
-                id="salary"
-                type="text"
-                className=" third-occ form-select"
-                readOnly={!checked}
-                required={
-                  checked && parentGuardianObj["employmentStatus"] == "Employed"
-                }
-              >
-                <option value="" disabled>
-                  Please select salary scale
-                </option>
-                <option value="PhP 9,999">&lt; PhP 9,999</option>
-                <option value="PhP 10,000 - 19,999">PhP 10,000 - 19,999</option>
-                <option value="PhP 20,000 - 39,999">PhP 20,000 - 39,999</option>
-                <option value="PhP 40,000 - 69,999">PhP 40,000 - 69,999</option>
-                <option value="PhP 70,000 - 99,999">PhP 70,000 - 99,999</option>
-                <option value="PhP 100,000+">PhP 100,000+</option>
-              </select>
-            </div>
-          </div>
+                <div className="form-col">
+                  <p className="label-form ">Office Address*</p>
+                  <input
+                    type="text"
+                    value={parentGuardianObj["officeAddress"]}
+                    onChange={(e) => {
+                      handleChange(
+                        e,
+                        "family2",
+                        nameLabel == "Father's"
+                          ? "father"
+                          : nameLabel == "Mother's Maiden"
+                          ? "mother"
+                          : "guardian"
+                      );
+                    }}
+                    id="officeAddress"
+                    className="form-textfield third-occ form-control"
+                    placeholder="Office Address"
+                    readOnly={!checked}
+                    required={
+                      checked && parentGuardianObj["employmentStatus"] == "Employed"
+                    }
+                  />
+                </div>
+              </div>
+              <div className="form-row">
+                <div className="form-col">
+                  <label htmlFor="name" className="label-form">
+                    Contact No*
+                  </label>
+                  <input
+                    maxLength={11}
+                    onInput={(e) => {
+                      const input = e.target.value.replace(/[^0-9]/g, ""); // Allow only digits
+                      e.target.value = input;
+                      if (input.length <= 11 || input.length >= 8) {
+                        handleChange(
+                          e,
+                          "family2",
+                          nameLabel == "Father's"
+                            ? "father"
+                            : nameLabel == "Mother's Maiden"
+                            ? "mother"
+                            : "guardian"
+                        );
+                      }
+                    }}
+                    onBlur={(e) => {
+                      const input = e.target.value.replace(/[^0-9]/g, "");
+                      if (input.length !== 11 && input.length !== 8) {
+                        alert("Contact number must be either 8 or 11 digits.");
+                        e.target.value = "";
+                        handleChange(
+                          e,
+                          "family2",
+                          nameLabel == "Father's"
+                            ? "father"
+                            : nameLabel == "Mother's Maiden"
+                            ? "mother"
+                            : "guardian"
+                        ); // Clear value in the state
+                      }
+                    }}
+                    value={parentGuardianObj["contactNo"]}
+                    id="contactNo"
+                    type="text"
+                    className="form-textfield third-occ form-control"
+                    placeholder="Contact number"
+                    readOnly={!checked}
+                    required={checked}
+                  />
+                </div>
+                <div className="form-col">
+                  <p className="label-form">Position*</p>
+                  <input
+                    value={parentGuardianObj["position"]}
+                    onChange={(e) => {
+                      handleChange(
+                        e,
+                        "family2",
+                        nameLabel == "Father's"
+                          ? "father"
+                          : nameLabel == "Mother's Maiden"
+                          ? "mother"
+                          : "guardian"
+                      );
+                    }}
+                    id="position"
+                    type="text"
+                    className="form-textfield third-occ form-control"
+                    placeholder="Position title"
+                    readOnly={!checked}
+                    required={
+                      checked && parentGuardianObj["employmentStatus"] == "Employed"
+                    }
+                  />
+                </div>
+                <div className="form-col">
+                  <p className="label-form">Salary Scale*</p>
+                  <select
+                    value={parentGuardianObj["salary"]}
+                    onChange={(e) => {
+                      handleChange(
+                        e,
+                        "family2",
+                        nameLabel == "Father's"
+                          ? "father"
+                          : nameLabel == "Mother's Maiden"
+                          ? "mother"
+                          : "guardian"
+                      );
+                    }}
+                    id="salary"
+                    type="text"
+                    className=" third-occ form-select"
+                    readOnly={!checked}
+                    required={
+                      checked && parentGuardianObj["employmentStatus"] == "Employed"
+                    }
+                  >
+                    <option value="" disabled>
+                      Please select salary scale
+                    </option>
+                    <option value="PhP 9,999">&lt; PhP 9,999</option>
+                    <option value="PhP 10,000 - 19,999">PhP 10,000 - 19,999</option>
+                    <option value="PhP 20,000 - 39,999">PhP 20,000 - 39,999</option>
+                    <option value="PhP 40,000 - 69,999">PhP 40,000 - 69,999</option>
+                    <option value="PhP 70,000 - 99,999">PhP 70,000 - 99,999</option>
+                    <option value="PhP 100,000+">PhP 100,000+</option>
+                  </select>
+                </div>
+              </div>
+              </>
+            ):null
+          }
         </>
       ) : null}
     </div>
